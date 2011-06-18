@@ -1,0 +1,39 @@
+(detector
+    (extension ini)
+    (extension conf))
+
+(folding
+    (start `\[`)
+    (stop `\[`))
+
+(pair "
+    "
+    (smart-typing))
+
+(pair `[`
+    `]`
+    (smart-typing)
+    (highlight))
+
+(pair '
+    '
+    (smart-typing))
+
+(pair [(]
+    [)]
+    (smart-typing)
+    (highlight))
+
+(pair [{]
+    [}]
+    (smart-typing)
+    (highlight))
+
+(shell-variables
+    (TM_COMMENT_START [; ]))
+
+(comment.line [; ])
+
+(in [source.ini entity.name.section.group-title.ini]
+    (symbol-list
+        (transformation [s/^\[(\w+)\]$/  $1/;])))

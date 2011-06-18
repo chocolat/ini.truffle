@@ -1,0 +1,37 @@
+(root source.ini
+    (zone comment.line.number-sign.ini
+        (match
+            (regex [(#).*$\n?]
+                (1 punctuation.definition.comment.ini))))
+    (zone comment.line.semicolon.ini
+        (match
+            (regex [(;).*$\n?]
+                (1 punctuation.definition.comment.ini))))
+    (zone
+        (match
+            (regex [\b([a-zA-Z0-9_.-]+)\b\s*(=)]
+                (1 keyword.other.definition.ini)
+                (2 punctuation.separator.key-value.ini))))
+    (zone entity.name.section.group-title.ini
+        (match
+            (regex [^(\[)(.*?)(\])]
+                (3 punctuation.definition.entity.ini)
+                (1 punctuation.definition.entity.ini))))
+    (zone string.quoted.single.ini
+        (start
+            (regex '
+                (0 punctuation.definition.string.begin.ini)))
+        (end
+            (regex '
+                (0 punctuation.definition.string.end.ini)))
+        (subzones
+            (zone constant.character.escape.ini
+                (match
+                    (regex \\.)))))
+    (zone string.quoted.double.ini
+        (start
+            (regex "
+                (0 punctuation.definition.string.begin.ini)))
+        (end
+            (regex "
+                (0 punctuation.definition.string.end.ini)))))
